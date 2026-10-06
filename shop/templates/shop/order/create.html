@@ -1,0 +1,51 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Confirmar Pedido - MinimalShop{% endblock %}
+
+{% block content %}
+<div class="row my-4">
+    <div class="col-12 text-center">
+        <h2 class="fw-bold mb-1">Confirmación de tu Pedido</h2>
+        <p class="text-muted">Por favor, revisa los detalles antes de finalizar tu compra.</p>
+    </div>
+</div>
+
+<div class="row justify-content-center g-4">
+    <div class="col-12 col-lg-6">
+        <div class="card shadow-sm border-0 rounded-3 mb-4">
+            <div class="card-body p-4">
+                <h5 class="fw-bold mb-3 text-secondary">Resumen de Compra</h5>
+                <ul class="list-group list-group-flush mb-3">
+                    {% for item in cart %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center px-0 bg-transparent">
+                            <div>
+                                <span class="fw-bold text-dark">{{ item.quantity }}x</span> {{ item.product.name }}
+                            </div>
+                            <span class="text-muted fw-semibold">${{ item.total_price }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                    <span class="fs-5 fw-bold text-dark">Total a Pagar:</span>
+                    <span class="fs-3 fw-bold text-primary">${{ cart.get_total_price }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario Seguro -->
+        <form method="post" action=".">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success btn-lg w-100 py-3 fw-bold shadow-sm mb-3">
+                💳 Simular Pago Seguro y Finalizar Pedido
+            </button>
+        </form>
+        
+        <div class="text-center">
+            <a href="{% url 'shop:cart_detail' %}" class="text-decoration-none text-muted small">
+                ← Volver al carrito para modificar
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

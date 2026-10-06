@@ -1,0 +1,27 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Iniciar Sesión - MinimalShop{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 450px; margin-top: 3rem;">
+    <article class="bg-white p-4 rounded shadow-sm border">
+        <h3 style="text-align: center; margin-bottom: 1.5rem;" class="fw-bold text-dark">Ingresar a mi Cuenta</h3>
+        
+        <form method="post" action=".">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <button type="submit" class="btn btn-primary w-100 mt-2 py-2 fw-bold shadow-sm">
+                Iniciar Sesión
+            </button>
+        </form>
+        
+        <footer style="text-align: center; margin-top: 1.5rem;">
+            <p class="text-muted small mb-0">
+                ¿Eres nuevo por aquí? <a href="{% url 'shop:register' %}" class="text-decoration-none fw-semibold">Regístrate aquí</a>
+            </p>
+        </footer>
+    </article>
+</div>
+{% endblock %}
+

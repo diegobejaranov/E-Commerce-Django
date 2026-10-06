@@ -1,0 +1,26 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Crear Cuenta - MinimalShop{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 450px; margin-top: 3rem;">
+    <article>
+        <h3 style="text-align: center; margin-bottom: 1.5rem;">Registro de Nuevo Cliente</h3>
+        
+        <form method="post" action=".">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <button type="submit" class="primary" style="width: 100%; margin-top: 1rem;">
+                Crear mi Cuenta
+            </button>
+        </form>
+        
+        <footer style="text-align: center; margin-top: 1.5rem;">
+            <p class="secondary" style="font-size: 0.9rem; margin: 0;">
+                ¿Ya tienes una cuenta? <a href="{% url 'shop:login' %}">Inicia sesión</a>
+            </p>
+        </footer>
+    </article>
+</div>
+{% endblock %}
